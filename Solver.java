@@ -9,8 +9,8 @@ public class Solver {
     // bandaids xd
     public void analyze(String input) {
         this.input = input;
-        lex();
-        parse();
+        if(!lex()) {return;}
+        if(!parse()) {return;}
     }
     // break input into tokens, check if tokens are valid
     private boolean lex() {
@@ -22,7 +22,7 @@ public class Solver {
         for(int i=0;i<input.length();i++) {
             String check = Character.toString(input.charAt(i));
             if(isToken(check)) {
-                if(!buffer.equals("")) {
+                if(!buffer.equals("")||buffer.equals("(")||buffer.equals("-")) {
                     tokens.add(buffer);
                     tokens.add(check);
                     buffer = "";
